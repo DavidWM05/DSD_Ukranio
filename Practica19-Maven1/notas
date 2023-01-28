@@ -1,0 +1,47 @@
+ ================================= Comandos Maven ===================================
+
+ -> Instalar maven 	- sudo apt install maven
+
+ -> Version maven	- mvn --version
+
+ -> Construir proyecto - mvn package     (dentro de my-app)
+
+ -> limpiar y compilar - mvn clean compile assembly:single
+
+ -> Se crea una tarjeta tarjet con los ejecutables
+
+ -> Ejecutar - java -jar nombre.jar
+
+ -> Para isertar una dependencias es en la etiqueta 
+ 	<build>
+ 		<plugins>
+ 			Aqui
+ 		</plugins>
+ 	</build>
+ ================================= Otros ============================================
+
+ -> Versiones		- expor
+
+ -> Version java 	- java --version
+
+ -> Cambiar version - sudo update-alternatives --config java
+
+
+
+
+
+ my-app
+|-- pom.xml
+`-- src
+    |-- main
+    |   `-- java
+    |       `-- com
+    |           `-- mycompany
+    |               `-- app
+    |                   `-- App.java
+    `-- test
+        `-- java
+            `-- com
+                `-- mycompany
+                    `-- app
+                        `-- AppTest.java

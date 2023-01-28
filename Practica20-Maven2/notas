@@ -1,0 +1,85 @@
+ ================================= Comandos Maven ===================================
+
+ -> Instalar maven 	- sudo apt install maven
+
+ -> Version maven	- mvn --version
+
+ -> Construir proyecto - mvn package     (dentro de my-app)
+
+ -> limpiar y compilar - mvn clean compile assembly:single
+
+ -> Se crea una tarjeta tarjet con los ejecutables
+
+ -> Ejecutar - java -jar nombre.jar
+
+ -> Para isertar una dependencias es en la etiqueta 
+ 	<build>
+ 		<plugins>
+ 			Aqui
+ 		</plugins>
+ 	</build>
+ ================================= Otros ============================================
+
+ -> Versiones		- expor
+
+ -> Version java 	- java --version
+
+ -> Cambiar version - sudo update-alternatives --config java
+
+
+
+
+
+ my-app
+|-- pom.xml
+`-- src
+    |-- main
+    |   `-- java
+    |       `-- com
+    |           `-- mycompany
+    |               `-- app
+    |                   `-- App.java
+    `-- test
+        `-- java
+            `-- com
+                `-- mycompany
+                    `-- app
+                        `-- AppTest.java
+
+
+ Intente acceder al servidor desde su teléfono celular y verifique que funciona correctamente.
+ [Respuesta] funciona correctamente de forma local, no se pudo establecer una conexion desde el celular. 
+    
+ Qué devuelve el servidor al intentar acceder a los endpoint declarados en WebServer.java: /status, /, /ui_assets y /procesar_datos
+ [/status]          Mensaje de el servidor esta vivo
+ [/]                Pagina principal contador de palabras
+ [/ui_assets]       nos muestra los codigos de cada asset
+ [/procesar_datos]  Hace la busqueda y el conteo de las palabras
+    
+ Agregue las impresiones que considere necesarias en el código WebServer.java para determinar cuál es el primer método HTTP enviado del navegador hacia el servidor web.
+    
+ ¿Cuál es el primer, segundo y tercer asset enviados del servidor hacia el navegador? En el método sendResponse agregue la impresión del número de bytes enviados para verificar que coinciden en tamaño con los archivos enviados.
+ [Primero]  index.html      707  bytes
+ [Segundo]  css.cs          562 bytes
+ [Tercero]  javascript.js   1521 kb
+
+ ¿En el código del servidor cuál es la función de ejecutar getClass().getResourceAsStream() ?
+ [Respuesta] Para este caso obtiene el path del asset en bytes.
+
+ ¿Para qué se ejecuta el método addContentType() ?
+ [Respuesta] Añade los assets dependiendo el tipo (html,css o js)
+    
+ Después de recibir los assets, al introducir la frase en el navegador y dar click en enviar, ¿qué método HTTP se ejecuta, a qué endpoint accede y qué método del código Java se ejecuta?
+ [Respuesta] se ejecuta un metodo post en el endpoint el cual ejecuta el metodo handleTaskRequest
+    
+ En el inciso anterior ¿qué valor tiene el header “Content-type” cuando el mensaje llega al servidor? (imprimir su valor)
+ [Respuesta] application/json
+    
+ En el método handleTaskRequest: ¿Para qué se utiliza el método de Jackson readValue?¿qué se almacena en la variable String frase? ¿qué se almacena en el objeto frontendSearchResponse? ¿Para qué se utiliza el método de Jackson writeValueAsBytes?
+ [Respuesta] readValue lee el json en forma de la clase FrontendSearchRequest. En la variable string frase se almacena la cadena ingresada por el usuario. El objeto frontendSearchResponse almacena el resultado del numero de palabras en formato json. Por ultimo se obtienen los bytes de frontendSearchResponse para poder mandar la respuesta al cliente. 
+
+ En el servidor HTTP analizado con anterioridad, la línea final del método sendResponse era exchange.close() , ¿Por qué se omitió esta vez?
+ [Respuesta] Esta parte no la pude comprender bien, profesor. Ya que compile y ejecute el servidor de esta clase y el de la 24 con y sin exchange.close() y no pude notar algun cambio.
+    
+ Además de los assets HTML, CSS y JS, el navegador solicita un cuarto asset. ¿Cuál es y que significa? Realice las modificaciones necesarias para que también se envíe el cuarto asset y se muestre en el navegador. Envíe la captura de pantalla correspondiente para demostrar que funciona.
+ [Respuesta] favicon.ico es un icono especial a la izquierda del URL.
