@@ -1,0 +1,875 @@
+***********************| 1 |***********************
+/*
+*	Dados los valores del radio de un círculo y su altura, calcular: el volumen
+*	del cono, el volumen del cilindro e indicar la diferencia de volumen entre 
+*	ambos. Los resultados deben mostrarse en pantalla con 4 decimales.
+*/
+public class P01{
+	public static void main(String[] args) {
+		double r= Double.parseDouble(args[0]),h=Double.parseDouble(args[1]); //radio, altura
+		double pi = 3.1416,cono,cilindro;
+
+		cono = (pi*(r*r)*h)/3.0;
+		cilindro = pi*(r*r)*h;
+
+		System.out.printf("Cono = %.4f cm^3 \n",cono);
+		System.out.printf("Cilindro = %.4f cm^3\n",cilindro);
+		System.out.printf("Diferencia = %.4f cm^3\n",(cilindro-cono));
+	}
+}
+***********************| 2 |***********************
+/*
+*	Escribe un programa que calcule el área de un trapecio de lados a y b
+*	y altura h mediante la formula:
+*	A = h*(a + b)/2
+*/
+public class P02{
+	public static void main(String[] args) {
+		double  a = Double.parseDouble(args[0]),
+				b = Double.parseDouble(args[1]),
+				h = Double.parseDouble(args[2]); //lado a, lado b, altura h
+		double Area;
+
+		Area = ((a+b)/2)*h;
+
+		System.out.printf("Area del trapecio = %.2f cm^2",Area);
+	}
+}
+***********************| 3 |***********************
+/*
+*	Utilizando operaciones de división entera y módulo, convertir un número
+*	dado en segundos a su equivalente en horas, minutos y segundos. Ejemplo,
+*	el valor en segundos de 3725 segundos es igual a 62 minutos, lo cual
+*	es igual a 1 hora, 2 minutos y 5 segundos.
+*/
+public class P03{
+	public static void main(String[] args) {
+		int  seg = Integer.parseInt(args[0]),h,m,s;
+		h = seg/3600;	//Horas
+		seg = seg%3600;
+		m = seg/60;		//Minutos
+		seg = seg%60;
+		s = seg;		//Segundos
+		System.out.println("Hora: "+h+"h "+m+"m "+s+"s");
+	}
+}
+***********************| 4 |***********************
+/*
+*	Escriba un programa que calcule las dos respuestas de x en
+*	formato decimal (en caso de que no existan soluciones reales
+*	debe indicarlo al usuario con un mensaje) que son soluciones
+*	de una ecuación de segundo grado.
+*/
+import java.util.Scanner;
+
+public class P04{
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		double a=0,b=0,c=0,x1,x2,aux;
+		
+		System.out.printf("Ingresa a: ");
+		a = in.nextDouble();
+		System.out.printf("Ingresa b: ");
+		b = in.nextDouble();
+		System.out.printf("Ingresa c: ");
+		c = in.nextDouble();
+
+		aux = (Math.pow(b,2)-4*a*c);
+		if(aux>=0){
+			x1 = ((-1)*b+Math.sqrt(aux))/(2*a);
+			x2 = ((-1)*b-Math.sqrt(aux))/(2*a);
+			System.out.printf(" X1 = %.4f \n X2 = %.4f\n",x1,x2);
+		}else System.out.println("Las raices son imaginarias");
+	}
+}
+***********************| 5 |***********************
+/*
+*	Escribe un programa para convertir una calificación de 0 a 100 al sistema A-F
+*	utilizando la siguiente tabla: (A - Muy bien) = 90-100, (B = Bien) 
+*	80 - 89, (C - Suficiente) = 60 -79, (F - No suficiente) = 0 - 59. El
+*	usuario debe escribir la calificación con número e indicar si quiere
+*	que la conversión le muestre la letra (A, B, C, F) o la descripción
+*	correspondiente (Muy Bien, Bien, Suficiente, No Suficiente).
+*/
+import java.util.Scanner;
+
+public class P05{
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int calificacion=0,opcion;
+		String op1[] = {"A","B","C","F"},op2[] = {"Muy Bien","Bien","Suficiente","No suficiente"};
+
+		System.out.printf("Ingresa la calificacion: ");
+		calificacion = in.nextInt();
+		System.out.printf("Formato a utilizar 1 = letras | 2 = descripcion: ");
+		opcion = in.nextInt();
+		System.out.println(" ");
+
+		switch(opcion){
+			case 1:
+					if(calificacion >= 90 && calificacion <=100){
+						System.out.println(" "+calificacion+" - "+op1[0]);
+					}else if(calificacion >= 80 && calificacion <=89){
+						System.out.println(" "+calificacion+" - "+op1[1]);
+					}else if(calificacion >= 60 && calificacion <=79){
+						System.out.println(" "+calificacion+" - "+op1[2]);
+					}else if(calificacion >= 0 && calificacion <=59){
+						System.out.println(" "+calificacion+" - "+op1[3]);
+					}
+			break;
+			case 2:
+					if(calificacion >= 90 && calificacion <=100){
+						System.out.println(" "+calificacion+" - "+op2[0]);
+					}else if(calificacion >= 80 && calificacion <=89){
+						System.out.println(" "+calificacion+" - "+op2[1]);
+					}else if(calificacion >= 60 && calificacion <=79){
+						System.out.println(" "+calificacion+" - "+op2[2]);
+					}else if(calificacion >= 0 && calificacion <=59){
+						System.out.println(" "+calificacion+" - "+op2[3]);
+					}
+			break;
+			default: System.out.println("Opcion no valida");
+		}
+	}
+}
+***********************| 6 |***********************
+/*
+*	La cadena de Comida “Hamburguesas Teresita” quiere dar una promoción a
+*	las mujeres entre 16 y 22 años o aquellas con nombre “Teresa”, “Tere”
+*	o “Teresita”, en estos casos, el sistema debe dar un descuento de 7%
+*	en el valor de la compra. Escribir un programa que solicite el valor
+*	de la compra, el primer nombre, edad y sexo del cliente e indique 
+*	el monto final a pagar. El nombre del cliente puede ser escrito en
+*	mayúsculas o minúsculas sin que esto afecte el cálculo final.
+*/
+import java.util.Scanner;
+
+public class P06{
+	public static void main(String[] args) {
+		//Variables
+		Scanner in = new Scanner(System.in);
+		int edad;
+		boolean condicion1,condicion2,condicion3;
+		double compra,descuento=0.17;
+		String nombre, sexo,aux;
+		//Solicitud de datos
+		System.out.printf(" Ingresa tu nombre: ");
+		nombre = in.nextLine();
+		System.out.printf(" Ingresa tu sexo M = mujer | H = hombre: ");
+		sexo = in.nextLine();
+		System.out.printf(" Ingresa tu edad: ");
+		edad = in.nextInt();
+		System.out.printf(" Compra $ ");
+		compra = in.nextDouble();
+		//Conversion a mayusculas
+		aux = nombre.toUpperCase();
+		sexo = sexo.toUpperCase();
+		//Condiciones
+		condicion1 = aux.equals("TERESA") || aux.equals("TERE") || aux.equals("TERESITA");
+		condicion2 = sexo.equals("M");
+		condicion3 = (edad>=16 && edad<=22);
+		//Condicional if de descuento
+		if(condicion1 && condicion2 && condicion3){
+			compra -= compra*descuento;
+			System.out.printf(" %s, Tu Hamburguesa tiene descuento. Total = $%.2f ",nombre,compra);
+		}else{
+			System.out.printf(" %s, no optienes el descuento. Total = $%.2f ",nombre,compra);
+		}
+	}
+}
+***********************| 7 |***********************
+/*
+*	La Comisión Federal de Electricidad cobra el consumo de electricidad de
+*	acuerdo con un tabulador basado en los kilowatts consumidos en el periodo.
+*	La tabla es la siguiente:
+*		Costo del kW para Hogares:
+*			De 0 a 250 kW el costo por kW es de $0.65
+*			De 251 a 500 kW el costo por kW es de $0.85
+*			De 501 a 1200 kW el costo por kW es de $1.50
+*			De 1201 a 2100 kW el costo por kW es de $2.50
+*			De 2101 kW hacia arriba el costo por kW es de $3.00
+*		Costo del kW para Negocios:
+*			$5.00, el costo es fijo por kilowatt sin importar la cantidad consumida.
+*/
+import java.util.*;
+
+public class P07{
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int contrato, kwatts;
+		double total=0;
+
+		System.out.printf(" Contrato: ");
+		contrato = in.nextInt();
+		System.out.printf(" kwatts consumidos: ");
+		kwatts = in.nextInt();
+
+		if(contrato==1){//Contrato Hogar - tipo 1
+			if(kwatts>=2101){
+				total = 250*0.65+250*0.85+700*1.5+900*2.5+(kwatts-2100)*3.0;
+			}else if(kwatts>=1201){
+				total = 250*0.65+250*0.85+700*1.5+(kwatts-1200)*2.5;
+			}else if(kwatts>=501){
+				total = 250*0.65+250*0.85+(kwatts-500)*1.5;
+			}else if(kwatts>=251){
+				total = 250*0.65+(kwatts-250)*0.85;
+			}else {
+				total = kwatts*0.65;
+			}
+		}else{//Contrato Negocios - tipo 2
+			total = kwatts*5;
+		}
+
+		System.out.println(" El total por "+kwatts+" kw consumidos es $"+total);
+	}
+}
+***********************| 8 |***********************
+/*
+*	Escribe un programa que pida 2 números e indique si uno es múltiplo 
+*	del otro, ejemplo: 2 y 4, el 4 es múltiplo de 2; otro ejemplo 9 y 3,
+*	el 9 es múltiplo de 3.
+*/
+import java.util.*;
+
+public class P08{
+	public static void main(String[] args) {
+		//Variables
+		Scanner in = new Scanner(System.in);
+		int a,b;
+		//Solicitud de datos
+		System.out.printf("Ingresa el primer numero: ");
+		a = in.nextInt();
+		System.out.printf("Ingresa el segundo numero: ");
+		b = in.nextInt();
+		//proceso
+		if((a%b)==0){
+			System.out.println(" "+a+" es multiplo de "+b);
+		} else if((a%b)==0){
+			System.out.println(" "+b+" es multiplo de "+a);
+		} else
+			System.out.println(" ninguno es multiplo");
+	}
+}
+***********************| 9 |***********************
+/*
+*	Escribe un programa que reciba un número en el rango de 1 a 3000
+*	y lo convierta en número romano. Ejemplo: 1997 sería MCMXCVII
+*/
+import java.util.*;
+
+public class P10{
+	public static int unidad(int u){
+		int aux=0;
+			 if(u==9){ aux = 9; System.out.printf("IX");}
+		else if(u==8){ aux = 8; System.out.printf("VIII");}
+		else if(u==7){ aux = 7; System.out.printf("VII");}
+		else if(u==6){ aux = 6; System.out.printf("VI");}
+		else if(u==5){ aux = 5; System.out.printf("V");}
+		else if(u==4){ aux = 4; System.out.printf("IV");}
+		else if(u==3){ aux = 3; System.out.printf("III");}
+		else if(u==2){ aux = 2; System.out.printf("II");}
+		else if(u==1){ aux = 1; System.out.printf("I");}
+
+		return aux;
+	}
+	public static int decena(int d){
+		int aux=0;
+			 if(d>=90){ aux = 9; System.out.printf("XC");}
+		else if(d>=80){ aux = 8; System.out.printf("LXXX");}
+		else if(d>=70){ aux = 7; System.out.printf("LXX");}
+		else if(d>=60){ aux = 6; System.out.printf("LX");}
+		else if(d>=50){ aux = 5; System.out.printf("L");}
+		else if(d>=40){ aux = 4; System.out.printf("XL");}
+		else if(d>=30){ aux = 3; System.out.printf("XXX");}
+		else if(d>=20){ aux = 2; System.out.printf("XX");}
+		else if(d>=10){ aux = 1; System.out.printf("X");}
+
+		return aux;
+	}
+	public static int centena(int c){
+		int aux=0;
+			 if(c>=900){ aux = 9; System.out.printf("CM");}
+		else if(c>=800){ aux = 8; System.out.printf("DCCC");}
+		else if(c>=700){ aux = 7; System.out.printf("DCC");}
+		else if(c>=600){ aux = 6; System.out.printf("DC");}
+		else if(c>=500){ aux = 5; System.out.printf("D");}
+		else if(c>=400){ aux = 4; System.out.printf("CD");}
+		else if(c>=300){ aux = 3; System.out.printf("CCC");}
+		else if(c>=200){ aux = 2; System.out.printf("CC");}
+		else if(c>=100){ aux = 1; System.out.printf("C");}
+
+		return aux;
+	}
+	public static int millar(int m){
+		int aux=0;
+			 if(m==3000){ aux = 3; System.out.printf("MMM");}
+		else if(m>=2000){ aux = 2; System.out.printf("MM");}
+		else if(m>=1000){ aux = 1; System.out.printf("M");}
+
+		return aux;
+	}
+	public static void main(String[] args) {
+		//Variables
+		Scanner in = new Scanner(System.in);
+		int numero,u=0,d=0,c=0,m=0;
+		//Solicitud de datos
+		System.out.printf("Ingresa el numero: ");
+		numero = in.nextInt();
+		//Proceso
+		if(numero > 0 && numero <= 3000){
+			System.out.printf(" %d -> ",numero);
+			m = millar(numero);
+			numero -= 1000*m;
+			c = centena(numero);
+			numero -=100*c;
+			d = decena(numero);
+			numero -=10*d;
+			u = unidad(numero);
+			numero -=u;
+		}else
+			System.out.println("Numero fuera del rango de conversion!!");
+	}
+}
+***********************| 10|***********************
+/*
+*	Escribe un programa que solicite al usuario un número entero
+*	y dé como resultado el factorial de ese número.
+*/
+import java.util.*;
+
+public class P10{
+	public static void main(String[] args) {
+		//Variables
+		Scanner in = new Scanner(System.in);
+		int numero;
+		long factorial;
+		//Solicitud de datos
+		System.out.printf("Ingresa el numero: ");
+		numero = in.nextInt();
+		//Proceso
+		if(numero==1)
+			System.out.println(" "+numero);
+		else{
+			factorial = numero;
+			System.out.printf(" %d! = (5)",numero);
+			for(int i=(numero-1);i>=1;i--){
+				factorial *=i;
+				System.out.printf("(%d)",i); 
+			}
+			System.out.printf("= %d",factorial);
+		}
+	}
+}
+***********************| 11|***********************
+/*
+*	Encontrar los números entre el 1 y el 5000 que cumplen la regla
+* 	de que la suma del cubo de sus dígitos es igual al número mismo.
+*	Ejemplo: 153 = 1^3+5^3+3^3
+*/
+public class P11{
+	public static int unidad(int u){
+		int aux=0;
+			 if(u==9) aux = 9;
+		else if(u==8) aux = 8;
+		else if(u==7) aux = 7;
+		else if(u==6) aux = 6;
+		else if(u==5) aux = 5;
+		else if(u==4) aux = 4;
+		else if(u==3) aux = 3;
+		else if(u==2) aux = 2;
+		else if(u==1) aux = 1;
+
+		return aux;
+	}
+	public static int decena(int d){
+		int aux=0;
+			 if(d>=90) aux = 9;
+		else if(d>=80) aux = 8;
+		else if(d>=70) aux = 7;
+		else if(d>=60) aux = 6;
+		else if(d>=50) aux = 5;
+		else if(d>=40) aux = 4;
+		else if(d>=30) aux = 3;
+		else if(d>=20) aux = 2;
+		else if(d>=10) aux = 1;
+
+		return aux;
+	}
+	public static int centena(int c){
+		int aux=0;
+			 if(c>=900) aux = 9;
+		else if(c>=800) aux = 8;
+		else if(c>=700) aux = 7;
+		else if(c>=600) aux = 6;
+		else if(c>=500) aux = 5;
+		else if(c>=400) aux = 4;
+		else if(c>=300) aux = 3;
+		else if(c>=200) aux = 2;
+		else if(c>=100) aux = 1;
+
+		return aux;
+	}
+	public static int millar(int m){
+		int aux=0;
+			 if(m==4000) aux = 4;
+		else if(m>=3000) aux = 3;
+		else if(m>=2000) aux = 2;
+		else if(m>=1000) aux = 1;
+
+		return aux;
+	}
+	public static void main(String[] args) {
+		//Variables
+		int numero,u=0,d=0,c=0,m=0;
+		double aux;
+		//Proceso
+		for(int i=1;i<=5000;i++){
+			numero = i;
+			m = millar(numero);  numero -=1000*m;
+			c = centena(numero); numero -=100*c;
+			d = decena(numero);  numero -=10*d;
+			u = unidad(numero);  numero -=u;
+			aux = Math.pow(m,3)+Math.pow(c,3)+Math.pow(d,3)+Math.pow(u,3);
+			u = d = c = m = 0;
+			if(aux==i)
+				System.out.println(" -> | "+i+" | ");
+		}
+	}
+}
+***********************| 12|***********************
+/*
+*	Inversiones. Calcular cuánto dinero tendría en una cuenta de
+*	ahorro al final de 20 años si al inicio de cada año añado 500
+*	dólares (solo de los años 1 al 10), el rendimiento anual es 
+*	de 5% y reinvierto las ganancias.
+*/
+public class P12{
+	public static void main(String[] args) {
+		//Variables
+		double dinero=0;
+		//Proceso
+		for(int i=1;i<=20;i++){
+			if(i>=1 && i<=10){
+				dinero += 500;
+				System.out.printf(" [%d]  -> %.3f + %.3f",i,dinero,(dinero*0.05));
+				dinero += dinero*(0.05);
+				System.out.printf(" -> %.3f\n",dinero);
+			}else{
+				System.out.printf(" [%d] -> %.3f + %.3f",i,dinero,(dinero*0.05));
+				dinero += dinero*(0.05);
+				System.out.printf(" -> %.3f\n",dinero);
+			}
+		}
+		System.out.println("\tTotal = $"+String.format("%.3f",dinero));
+	}
+}
+***********************| 13|***********************
+/*
+*	Escribir un programa que reciba una cadena de caracteres y la
+*	imprima alrrevez
+*/
+import java.util.Scanner;
+
+public class P13{
+	public static void main(String[] args) {
+		//Variables
+		Scanner in = new Scanner(System.in);
+		String cadena;
+		//Solicitud de datos
+		System.out.printf(" Ingresa la cadena: ");
+		cadena = in.nextLine();
+		//Proceso
+		System.out.printf(" %s -> ",cadena);
+		for(int i=(cadena.length()-1) ;i >= 0 ; i--){
+			System.out.printf("[%c]",cadena.charAt(i));
+		}
+	}
+}
+***********************| 14|***********************
+/*
+*	Escribe un programa que solicite un número al usuario y entonces
+*	mostrar los números de 5 en 5 desde el número indicado hasta 150.
+*	Ejemplo: si el usuario introduce el número 27, la secuencia sería
+*	27, 32, 37, 42, 47..... 142, 147.
+*/
+import java.util.Scanner;
+
+public class P14{
+	public static void main(String[] args) {
+		//Variables
+		Scanner in = new Scanner(System.in);
+		int numero,i;
+		//Solicitud de datos
+		System.out.printf(" Ingresa el numero: ");
+		numero = in.nextInt();
+		//Proceso
+		while(numero<=150){
+			System.out.printf(" [%d]",numero);
+			numero+=5;
+		}
+	}
+}
+***********************| 15|***********************
+/*
+*	En este programa la computadora debe elegir un número al azar
+*	entre 1 y 100 y solicitará al usuario que adivine el numero.
+*	A cada intento del usuario la computadora debe indicar si el 
+*	número que el usuario introdujo es mayor o menor que el número
+*	prefijado. El programa debe terminar cuando el usuario adivine
+*	el número o introduzca el número 0 para salir.
+*/
+import java.util.Scanner;
+
+public class P15{
+	public static void main(String[] args) {
+		//Variables
+		Scanner in = new Scanner(System.in);
+		int numero,opcion=0;
+		//Proceso
+		numero = (int)(Math.random()*100+1);
+		System.out.println(numero);
+		while(opcion!=numero){
+			System.out.printf(" -> Ingresa el numero: ");
+			opcion = in.nextInt();
+			if(opcion==0) opcion = numero;
+			else if(opcion < numero)
+				System.out.println(" El numero introducido es menor");
+			else if(opcion > numero)
+				System.out.println(" El numero introducido es mayor");
+		}
+		System.out.println(" -> Juego terminado, el numero era "+numero);		
+	}
+}
+***********************| 16|***********************
+/*
+*	En este programa la computadora debe elegir un número al azar
+*	entre 1 y 100 y solicitará al usuario que adivine el numero.
+*	A cada intento del usuario la computadora debe indicar si el 
+*	número que el usuario introdujo es mayor o menor que el número
+*	prefijado. El programa debe terminar cuando el usuario adivine
+*	el número o introduzca el número 0 para salir.
+*/
+import java.util.Scanner;
+
+public class P16{
+	public static void main(String[] args) {
+		//Variables
+		Scanner in = new Scanner(System.in);
+		int opcion = 1;
+		long numero = 0;
+		//Proceso
+		while(opcion != 0){
+			System.out.printf(" -> Ingresa un numero: ");
+			opcion = in.nextInt();
+			if(opcion==0) opcion = 0;
+			else {
+				int cuadrado = (int)Math.pow(opcion,2);
+				numero += cuadrado;
+				System.out.printf("\t\t -> %d^2 = %d\n",opcion,cuadrado);
+			}
+		}
+		System.out.println("\t\t   Total: "+numero);		
+	}
+}
+***********************| 17|***********************
+/*
+*	Leer 10 números enteros, guardarlos y mostrarlos
+*	en el mismo orden en que fueron
+*/
+import java.util.*;
+
+public class P17{
+	public static void main(String[] args) {
+		//Variables
+		Scanner in = new Scanner(System.in);
+		int arreglo[] = new int[10];
+		//Proceso
+		for(int i=0;i<10;i++){
+			System.out.printf(" -> Ingresa un numero: ");
+			arreglo[i] = in.nextInt();	
+		}
+		for(int i=0;i<10;i++)
+			System.out.printf(" [%d]",arreglo[i]);
+	}
+}
+***********************| 18|***********************
+/*
+*	Escribe un programa que lea 2 arreglos de 10 números 
+*	(arreglo X, arreglo Y). El programa debe mezclarlos 
+*	en un tercer arreglo (de 20 elementos obviamente) default:
+*	la siguiente manera: 1er elemento del arreglo X, 1er elemento
+*	del arreglo Y, 2do elemento del arreglo X, 2do elemento del 
+*	arreglo Y, 3er elemento del arreglo X..., etc. El programa 
+*	deberá mostrar en pantalla el arreglo resultante.
+*/
+public class P18{
+	public static void main(String[] args) {
+		//Variables
+		int x[] = {1,2,3,4,5,6,7,8,9,10},
+			y[] = {11,12,13,14,15,16,17,18,19,20},
+			xy[] = new int[20];
+		//Proceso
+		for(int i=0,j=0;i<20;i+=2,j++){
+			xy[i] = x[j];
+			xy[i+1] = y[j];			
+		}
+		for(int i=0;i<20;i++)
+			System.out.printf(" [%d]",xy[i]);
+	}
+}
+***********************| 19|***********************
+/*
+*	Leer una serie de 10 números, moverlos una posición hacia adelante
+*	en el arreglo y mostrar el arreglo resultante. Ejemplo, tenemos el
+*	siguiente arreglo 1,2,3,4,5, si desplazamos los elementos una posición
+*	hacia adelante debemos obtener: 5,1,2,3,4. Es decir, el primer elemento
+*	se mueve hacia el segundo lugar, el segundo al tercero, etc., y el último
+*	al primero.
+*/
+import java.util.*;
+
+public class P19{
+	public static void main(String[] args) {
+		//Variables
+		Scanner in = new Scanner(System.in);
+		int arreglo[] = new int[10],a = 0,b=0;
+		//Proceso
+		for(int i=0;i<10;i++){
+			System.out.printf(" -> Ingresa un numero: ");
+			arreglo[i] = in.nextInt();	
+		}
+		//proceso - posicion
+		for(int i=0;i<10;i++){
+			if(i==0){
+				a = arreglo[i];
+			}else if(i>0 && i<9){
+				b = arreglo[i];
+				arreglo[i] = a;
+				a = b;
+			}else if(i==9){
+				b = arreglo[i];
+				arreglo[i] = a;
+				arreglo[0] = b;			
+			}
+		}
+		for(int i=0;i<10;i++)
+			System.out.printf(" [%d]",arreglo[i]);
+	}
+}
+***********************| 20|***********************
+/*
+*	Escribe un programa que genere 10 números al azar y los almacene en un arreglo.
+*	El programa debe mostrar el arreglo e indicar cuál es el mayor y cuál es el 
+*	menor de los números.
+*/
+
+public class P20{
+	public static void main(String[] args) {
+		//Variables
+		int arreglo[] = new int[10],max,min,a = 0,b = 0;
+		//Proceso - random
+		for(int i=0;i<10;i++) 
+			arreglo[i] = (int)(Math.random()*30+1);
+		//proceso - mayor
+		for(int i=0;i<10;i++){
+			if(i==0){
+				a = arreglo[i];
+				continue;
+			}
+			b = arreglo[i];
+			if(a>b)
+				continue;
+			else if(a<b)
+				a = b;
+		}
+		max = a;
+		//proceso - menor
+		for(int i=0;i<10;i++){
+			if(i==0){
+				a = arreglo[i];
+				continue;
+			}
+			b = arreglo[i];
+			if(a<b)
+				continue;
+			else if(a>b)
+				a = b;
+		}
+		min = a;
+		//Impresion de datos
+		for(int i=0;i<10;i++)
+			System.out.printf(" [%d]",arreglo[i]);
+		System.out.println(" ");
+		System.out.println(" El numero mayor es "+max);
+		System.out.println(" El numero menor es "+min);
+	}
+}
+***********************| 21|***********************
+/*
+*	Escribe un programa que lea un arreglo bidimensional de 5x5 y muestre la suma
+*	de la diagonal principal sin utilizar ciclos anidados. “En álgebra lineal, la
+*	diagonal principal de una matriz cuadrada contiene los elementos situados desde
+*	A(1,1) hasta A(N,N).
+*/
+public class P21{
+	public static void main(String[] args) {
+		//Variables
+		int arreglo[][] = new int[5][5],suma=0;
+		//Proceso - random
+		for(int i=0; i < 5; i++)
+			for(int j=0; j < 5 ; j++) 
+			arreglo[i][j] = (int)(Math.random()*9+1);
+		//Impresion de datos
+		for(int i=0; i < 5; i++){
+			for(int j=0; j < 5 ; j++){ 
+				System.out.printf(" |%d|",arreglo[i][j]);
+				if(i==j)
+					suma+=arreglo[i][j];
+			}
+			System.out.printf("\n");
+		}
+		System.out.println(" la suma de la diagonal es "+suma);		
+	}
+}
+***********************| 22|***********************
+/*
+*	Escribe un programa que solicite al usuario los elementos de dos matrices 
+*	(una matriz de 3 renglones x3 columnas por una de 2 renglones x3 columnas).
+*	 El programa debe realizar la multiplicación de ambas matrices y mostrar el
+*	 resultado.
+*/
+public class P22{
+	public static void main(String[] args) {
+		//Variables
+		int a[][] = new int[3][3],
+			b[][] = new int[2][3],
+			c[][] = new int[2][3];
+		//Proceso - random
+		for(int i=0; i < 3; i++)
+			for(int j=0; j < 3 ; j++) 
+				a[i][j] = (int)(Math.random()*9+1);
+
+		for(int i=0; i < 2; i++)
+			for(int j=0; j < 3 ; j++) 
+				b[i][j] = (int)(Math.random()*9+1);
+		//Impresion de matrices
+		System.out.printf("A = \n");
+		for(int i=0; i < 3; i++){
+			for(int j=0; j < 3 ; j++) 
+				System.out.printf(" |%d|",a[i][j]);
+			System.out.printf("\n");
+		}
+		System.out.printf("B = \n");
+		for(int i=0; i < 2; i++){
+			for(int j=0; j < 3 ; j++) 
+				System.out.printf(" |%d|",b[i][j]);
+			System.out.printf("\n");
+		}
+		//multiplicacion
+		for(int i = 0; i < 3; i++){//Columnas de la segunda matriz
+			for(int j = 0; j < 2 ; j++){//Filas de la primera matriz
+				int multiplicacion=0;
+				for(int k=0; k < 3 ;k++){//Columna de la primera
+					multiplicacion += b[j][k]*a[k][i];
+				}
+				c[j][i] = multiplicacion;
+			}
+		}
+		System.out.printf("B * A = \n");
+		for(int i=0; i < 2; i++){
+			for(int j=0; j < 3 ; j++) 
+				System.out.printf(" |%d|",c[i][j]);
+			System.out.printf("\n");
+		}
+	}
+}
+***********************| 23|***********************
+/*
+*	Escribe un programa que solicite edades y estaturas de personas y guarde los datos
+*	en un archivo de texto de la siguiente manera: edad, estatura. El programa debe crear
+*	el archivo en caso de que este no exista. En caso de que el archivo ya exista entonces
+*	deberá añadir los datos al archivo. El programa debe terminar cuando el usuario 
+*	introduzca el número 0 como edad.
+*/
+import java.util.*;
+import java.io.*;
+
+public class P23{
+	public static void main(String[] args) {
+		//Variables
+		Scanner in = new Scanner(System.in);
+		int edad=1,estatura=1;
+		//Proceso - escribir
+		try {
+            File archivo = new File("personas.txt");
+            FileWriter escribir = new FileWriter(archivo, true);
+            while(edad!=0){
+            	System.out.printf(" Ingresa edad: ");
+            	edad = in.nextInt();
+            	if(edad!=0){
+            		System.out.printf(" Ingresa estatura: ");
+            		estatura= in.nextInt();            	
+            		escribir.write(" |Edad = "+String.valueOf(edad)+"| Estatura = "+String.valueOf(estatura)+"|");
+                	escribir.write("\r\n"); 	
+            	}         
+            }
+            escribir.close(); //Se cierra la conexion
+        }catch (Exception e) {
+            System.out.println("Error el archivo");
+        }
+	}
+}
+***********************| 24|***********************
+/*
+*   Leer un archivo de texto que contiene un número entero por cada línea e
+*   indicar cuál es el número mayor dentro del archivo y el número de renglón
+*   en que se encuentra.
+*/
+import java.io.*;
+import java.util.*; 
+
+public class P24{     
+    public static void main(String[] args) throws IOException {
+        //Variables
+        String cadena,archivo="numero.txt";
+        ArrayList<String> lista = new ArrayList<String>();
+        FileReader f = new FileReader(archivo); 
+        BufferedReader b = new BufferedReader(f);
+        int a=0,bb=0,max=0,linea=0;
+        //Proceso
+        try{
+            //Lectura de archivo
+            int i = 0;
+            while((cadena = b.readLine())!=null) { 
+                System.out.println(cadena);
+                lista.add(cadena);
+            }
+            b.close();
+            //Creacion de vector
+            int n = lista.size();
+            int vec[] = new int[n];
+
+            for(i=0;i<n;i++)
+                vec[i]=Integer.parseInt(lista.get(i));
+            //proceso mayor
+            for(i=0;i<n;i++){
+                if(i==0){
+                    a = vec[i];
+                    linea=i;
+                    continue;
+                }
+                bb = vec[i];
+                if(a>bb)
+                    continue;
+                else if(a<bb){
+                    a = bb;
+                    linea=i+1;
+                }
+            }
+            max = a;
+            System.out.println("\n El numero "+max+" linea "+linea+" es el mayor");
+        }catch(Exception e) {
+            System.out.println("Error el archivo");
+        }
+    }
+}

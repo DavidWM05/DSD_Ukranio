@@ -1,0 +1,3 @@
+ |Edad = 15| Estatura = 174|
+ |Edad = 25| Estatura = 170|
+ |Edad = 85| Estatura = 165|
